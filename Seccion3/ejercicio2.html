@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM + jQuery + JavaScript</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3gJwYp4xQ8dYxZsB5J1Dz4rRZETm9wqLSdGxZBT81nY=" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    label, input, button { display: block; margin-bottom: 12px; }
+    #resultado { margin-top: 16px; padding: 12px; border: 1px solid #ccc; background: #f9f9f9; }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 2</h1>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" placeholder="Escribe tu nombre" />
+  <button type="button" id="btnGuardar">Guardar</button>
+  <div id="resultado"></div>
+
+  <script>
+    // Transformación en JavaScript puro
+    function convertirAMayusculas(texto) {
+      return texto.trim().toUpperCase();
+    }
+
+    function mostrarResultado(mensaje) {
+      const resultadoEl = document.getElementById('resultado');
+      if (resultadoEl) {
+        resultadoEl.textContent = mensaje;
+      }
+    }
+
+    function inicializarEvento() {
+      const boton = document.getElementById('btnGuardar');
+      if (!boton) {
+        mostrarResultado('No se encontró el botón de guardar.');
+        return;
+      }
+
+      if (typeof window.jQuery === 'undefined') {
+        mostrarResultado('Error: jQuery no se cargó. Verifica la conexión a internet o el CDN.');
+        return;
+      }
+
+      $('#btnGuardar').on('click', function (event) {
+        event.preventDefault();
+
+        const valor = $('#nombre').val();
+
+        if (!valor || !valor.trim()) {
+          mostrarResultado('Por favor, ingresa un valor antes de continuar.');
+          return;
+        }
+
+        const textoMayusculas = convertirAMayusculas(valor);
+        mostrarResultado('Resultado: ' + textoMayusculas);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', inicializarEvento);
+  </script>
+</body>
+</html>
