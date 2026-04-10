@@ -1,7 +1,5 @@
 # Conocimientos Técnicos
 
-API REST desarrollada en .NET 10 / C# para la gestión de consultas de facturas.
-
 ## 1. ¿Cuál es la diferencia entre '==' y '===' en PHP?
 
 - R/ - En PHP '==' antes de comparar los valores, verifica si es necesario hacer una conversión de tipos,
